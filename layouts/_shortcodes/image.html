@@ -1,0 +1,13 @@
+
+
+{{ $imageSrc := .Get "src" }}
+{{ $imageWidth := .Get "size" }}
+{{ $caption := .Get "caption" }}
+
+<!-- FIXME: Set caption if unset -->
+
+
+<img src="{{$imageSrc}}" width="{{$imageWidth}}">
+<p>{{$caption}}</p>
+</img>
+
