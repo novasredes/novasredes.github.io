@@ -1,0 +1,38 @@
+<html>
+{{$siteName := .Site.Title}}
+{{$siteTagling := .Site.Param "tagline"}}
+{{$siteCopyright := .Site.Param "copyright"}}
+{{$siteLogoPath := .Site.Param "logoPath"}}
+
+<head>
+	<title>{{.Title}} | {{$siteName}}</title>
+</head>
+
+<body>
+	<center>
+	<img width="50%" height="40%" src="/{{$siteLogoPath}}"></img>
+	<!-- <img width="50%" height="40%" src="logo.svg"></img> -->
+	<h1>{{$siteName}}</h1>
+	<h4>{{$siteTagling}}</h4>
+
+	<p>O que estas a procurar?<p>
+	<ol>
+		{{range .Site.RegularPages}}
+			{{$page := .}}
+			<li><a href="{{$page.RelPermalink}}">{{$page.Title}}</a> - <i>{{$page.Description}}</li></li>
+		{{end}}
+	<ol>
+	<p>Click <a href="">here</a> for more information</p>
+
+	</center>
+</body>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{{partial "footer.html" .}}
+
+</html>

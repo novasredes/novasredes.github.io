@@ -1,0 +1,10 @@
+{{$siteCopyright := .Site.Param "copyright"}}
+{{$siteLicense := .Site.Param "license"}}
+
+<footer>
+	<center>
+	<p>{{.GitInfo}}</p>
+	<p>{{$siteCopyright}}</p>
+	<p><i>under</i> the <code>{{$siteLicense}}</code> license</p>
+	</center>
+</footer>
