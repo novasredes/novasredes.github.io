@@ -1,1 +1,3 @@
+# Ignore Hugo-generated artefacts
 public/
+.hugo_build.lock
