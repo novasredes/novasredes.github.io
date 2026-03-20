@@ -30,7 +30,9 @@ out an IPv6 address. This mechanism compresses and hence moves
 one from a higher bit-width key to a lower one - this means that
 clashes are perhaps possible. Think of two keys $A_key$ and $B_key$
 are hashed and we only take a small portion of the hash - there
-is a possibility. TODO: Continue this
+is a possibility.
+
+TODO: Continue this
 
 ## How to use it
 
@@ -46,3 +48,21 @@ The SSID is `NovasRedes N:YGG,T:CID` and the password is `acessoparacidadeiros`.
 ## Running your own node
 
 For more information on this please see [this guide](/redes/yggdrasil/own_node).
+
+## Reaching the _wider_ Yggdrasil
+
+TODO: Add information on upstream Yggdrasil peerings that we have have
+
+We maintain "upstream" peerings that reach out to other Yggdrasil nodes
+and we do this at more than just one single node. This means that is such
+a "downstream" node goes down then re-routing can occur and another node
+can allow access via the "upstream".
+
+| Upstream peer URI | Downstream node |
+|-------------------|-----------------|
+|	`tls://yggdrasil.deavmi.assigned.network:2001` | Planned home pole node |
+|	N/A | Planned munic node |
+|	N/A | Planned JC Grobelaar node |
+
+We use the word "upstream" and "downstream" as the concepts are not
+really called that in Yggdrasil.
