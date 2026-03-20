@@ -20,4 +20,4 @@ at least **64MB** of flash).
 
 {{< image src="/hardware/ygg_cudy_ap300.webp" size="40%" caption="Cudy's AP300 router">}}
 
-{{< image src="/hardware/ygg_mikrotik_map.webp" size="40%" caption="Cudy's AP300 router">}}
+{{< image src="/hardware/ygg_mikrotik_map.webp" size="40%" caption="Mikrotik mAP">}}
