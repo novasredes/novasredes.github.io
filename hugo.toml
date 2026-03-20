@@ -1,0 +1,12 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'Novasredes'
+
+# To allow Hugo to read `.git`
+enableGitInfo = true
+
+[params]
+	tagline = 'Redes de compudatores experimentais'
+	copyright = 'Copyright everything by Tristan Brice Velloza Kildaire'
+	license = 'Creative Commons Attribution-ShareAlike 4.0 International'
+	logoPath = 'logo.png'
