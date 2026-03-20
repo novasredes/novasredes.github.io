@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="244.2664mm"
+   height="86.734375mm"
+   viewBox="0 0 244.2664 86.734375"
+   version="1.1"
+   id="svg1"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient16">
+      <stop
+         style="stop-color:#00ffff;stop-opacity:1"
+         offset="0"
+         id="stop16" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop17" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient16"
+       id="linearGradient17"
+       x1="-70.160263"
+       y1="201.1261"
+       x2="207.67438"
+       y2="177.73933"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       xlink:href="#linearGradient16"
+       id="linearGradient2"
+       gradientUnits="userSpaceOnUse"
+       x1="-70.160263"
+       y1="201.1261"
+       x2="207.67438"
+       y2="177.73933" />
+    <linearGradient
+       xlink:href="#linearGradient16"
+       id="linearGradient3"
+       gradientUnits="userSpaceOnUse"
+       x1="-70.160263"
+       y1="201.1261"
+       x2="207.67438"
+       y2="177.73933" />
+    <linearGradient
+       xlink:href="#linearGradient16"
+       id="linearGradient4"
+       gradientUnits="userSpaceOnUse"
+       x1="-70.160263"
+       y1="201.1261"
+       x2="207.67438"
+       y2="177.73933" />
+    <linearGradient
+       xlink:href="#linearGradient16"
+       id="linearGradient5"
+       gradientUnits="userSpaceOnUse"
+       x1="-70.160263"
+       y1="201.1261"
+       x2="207.67438"
+       y2="177.73933" />
+    <linearGradient
+       xlink:href="#linearGradient16"
+       id="linearGradient6"
+       gradientUnits="userSpaceOnUse"
+       x1="-70.160263"
+       y1="201.1261"
+       x2="207.67438"
+       y2="177.73933" />
+    <linearGradient
+       xlink:href="#linearGradient16"
+       id="linearGradient7"
+       gradientUnits="userSpaceOnUse"
+       x1="-70.160263"
+       y1="201.1261"
+       x2="207.67438"
+       y2="177.73933" />
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(19.7652,-94.555263)">
+    <g
+       id="g2"
+       style="fill:url(#linearGradient17);fill-opacity:1">
+      <path
+         id="path5"
+         style="fill:url(#linearGradient2);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+         d="m 204.73601,189.11053 v 37.3024 l -39.08751,49.43196 v -6.48538 z"
+         points="204.73601,226.41293 165.6485,275.84489 165.6485,269.35951 204.73601,189.11053 " />
+      <path
+         id="path7"
+         style="fill:url(#linearGradient3);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.1883;stroke-linejoin:round"
+         d="M 15.945831,256.30517 165.6485,269.35951 v 6.48538 L 15.945831,258.51636 Z"
+         points="165.6485,269.35951 165.6485,275.84489 15.945831,258.51636 15.945831,256.30517 " />
+      <path
+         id="path3"
+         style="fill:url(#linearGradient4);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+         d="M -39.5304,244.56402 204.73601,189.11053 165.6485,269.35951 15.945831,256.30517 Z"
+         points="204.73601,189.11053 165.6485,269.35951 15.945831,256.30517 -39.5304,244.56402 " />
+      <path
+         id="path2"
+         style="fill:url(#linearGradient5);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.1883;stroke-linejoin:round"
+         d="m -39.5304,244.56402 v 3.07824 l 55.476231,10.8741 v -2.21119 z"
+         points="-39.5304,247.64226 15.945831,258.51636 15.945831,256.30517 -39.5304,244.56402 " />
+      <path
+         id="path4"
+         style="fill:url(#linearGradient6);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+         d="m -39.5304,244.56402 244.26641,-55.45349 v 37.3024 L -39.5304,247.64226 Z"
+         points="204.73601,189.11053 204.73601,226.41293 -39.5304,247.64226 -39.5304,244.56402 " />
+      <path
+         id="path6"
+         style="fill:url(#linearGradient7);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.1883;stroke-linejoin:round"
+         d="M -39.5304,247.64226 204.73601,226.41293 165.6485,275.84489 15.945831,258.51636 Z"
+         points="204.73601,226.41293 165.6485,275.84489 15.945831,258.51636 -39.5304,247.64226 " />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.173px;font-family:MnSymbol;-inkscape-font-specification:'MnSymbol, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;direction:ltr;white-space:pre;inline-size:189.719;display:inline;fill:#000000;stroke-width:2.51442"
+       x="27.021769"
+       y="146.81723"
+       id="text2"
+       transform="matrix(1.0901961,0,0,1.2898838,-14.059334,-31.72873)"><tspan
+         x="27.021769"
+         y="146.81723"
+         id="tspan3"><tspan
+           style="font-weight:bold;font-family:gallant12x22;-inkscape-font-specification:'gallant12x22, Normal'"
+           id="tspan1">Novasredes</tspan></tspan></text>
+  </g>
+</svg>
