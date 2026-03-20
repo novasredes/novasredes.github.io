@@ -3,6 +3,8 @@ title: About
 description: Find out about the goals of the project
 ---
 
+## Goals
+
 Novasredes means _new nets_ (quite literally a net) in Portuguese and aludes
 to the fact that the project revolves around building infrastructure for future-focused
 networks with the following in mind:
@@ -19,6 +21,22 @@ networks with the following in mind:
 		to pass a much higher bar of trust than regular open source software does.
 	* Open specifications: One should be able to replicate this in their town
 		and provide inter-linking with other communities as well
+
+### Narrow goals
+
+One of the narrow goals of novasredes, in specific, is the [trunking service](/fc_trunk).
+This is something I personally dreamt up and have experimented with in my
+lab at home but something I would like to test with the greater technical
+community.
+
+### Wider goals
+
+The wider goals are not specific to novasredes but rather show how it can
+play a part in extending existing experimental and resilient networks,
+such as:
+
+1. the [Reticulum network](/redes/reticulum_intro)
+2. the [Yggdrasil network](/redes/yggdrasil_intro)
 
 ## Why now?
 
