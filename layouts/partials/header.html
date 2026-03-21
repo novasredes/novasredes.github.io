@@ -3,8 +3,25 @@
 {{$pageAuthor := .Param "author"}}
 {{$datePublished := .PublishDate}}
 
+
 <p><b>Written by:</b> {{$pageAuthor}}</p>
-<!-- FIXME: Fix when date is not present -->
-<p><b>Date:</b> {{time.Format "1 1 2020" $datePublished}}</p>
+
+<!--
+	Below is the default value that appears when no
+	date is present - the zero value I guess.
+
+	Therefore we check for this and then omit printing
+	the date if this is the case
+-->
+{{$t := (time.AsTime "0001-01-01")}}
+
+{{if eq $datePublished $t}}
+	<!-- Do nothing -->
+{{else}}
+	<p><b>Date:</b> {{$datePublished}}</p>
+{{end}}
+
+
+
 
 
