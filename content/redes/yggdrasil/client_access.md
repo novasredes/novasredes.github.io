@@ -32,3 +32,7 @@ This will define a bridge interface named `accessbr0` and then will enslave the 
 
 Only add a `list ports` entry for the interfaces you have/want bridged (take note of the opening paragraph of this section).
 
+### On ethernet
+
+Really it is just added as a slave interface to the `accessbr0` bridge so nothing needs to be done.
+

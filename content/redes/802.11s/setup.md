@@ -155,3 +155,55 @@ Now plug your computer into your home network (one with a DHCP server) and then 
 
 TODO Honetsly for a noob this may be too much
 
+## 802.11s mesh WiFi
+
+We now need to setup our WiFi network interface that will be used for ad-hoc communications with neighbouring WiFi radios on _other_ mAPs.
+
+What 802.11s offers is two things:
+1. A standard way for setting up an ad-hoc WiFi network. This means any two devices on the same MESH WiFi network will be able to exchange Ethernet frames with one another without requiring the concept of "associating with" a _single_ access point. It's completely unlike infrastructure mode.
+2. Forwarding is another feature. This allows an Ethernet frame received from A by B to be forwarded along to C (which cannot see B). This is a feature we will _not_ be using as we do not require layer 2 forwarding as we have layer 3 forwarding provided by Yggdrasil.
+	a. If enabled then we'd double up on routing and Yggdrasil would see all nodes on the same Ethernet LAN - we don't need this - it is wasteful.
+
+### Setting up the wireless interface
+
+If we take a look at the configuration file at `/etc/config/wireless` we'll see that there already exists an _interface entry_ named `default_radio0`, let's update it to the following:
+
+```
+config wifi-iface 'mesh_radio0'
+	option device 'radio0'
+	option ifname 'mesh0'
+	option mode 'mesh'
+	option mesh_id 'YggMesh'
+	option mesh_fwding '0'
+	option encryption 'sae'
+	option key 'HateTheStateMate'
+```
+
+Note that I set `disabled` to `0` meaning that we have enabled the underlying radio and that we have configured it to use channel `3`.
+
+>**Note:** The channel must be the same on all devices participating in the ad-hoc network
+
+The `channel` is the channel you wish to use _within_ the given `band`. `2g` means the $2.4Ghz$ spectrum
+
+TODO We need to enable or remove the `wpad-*` package
+* see https://openwrt.org/docs/guide-user/network/wifi/mesh/802-11s#installation_configuration
+* Note we can install the **full** `wpad` package as we have enough storage. The full package is about `~600KB` in size.
+
+### Optionals for encryption
+
+If you enabled encyrption on your `wifi-iface` entry then ensure that you install the `wpad` package. There are *many* versions depending on what else one may want to do, at the bare minimum you will need to install *some package* that supports encyrption with 802.11**s**.
+By default you will have a package named `wpad-basic-mbedtls` installed. This version **does NOT** support ecnryption for 802.11**s**. We must therefore remove it with:
+```bash
+opkg remove wpad-basic-mbedtls
+```
+
+Then we can install the `wpad-mesh-mbedtls` for mesh encryption support with:
+
+```bash
+opkg install wpad-mesh-mbedtls
+```
+
+After doing this it seems that restarting any service will not enable encryption, so a reboot is required.
+
+> **Note:** I rebooted as well - if unsure then do that. I think it was required for the encryption feature set to be enabled.
+

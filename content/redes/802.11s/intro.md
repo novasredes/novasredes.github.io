@@ -92,3 +92,70 @@ of a rough introductory document.
 
 Therefore if you want to jump straight into the technical documents
 then I recommend that you [do so now](../setup).
+
+---
+
+## NovasRedes's parameters
+
+The parameters you should be using to get your radio node onto
+the Novasredes 802.11s network(s) depends on which broadcast
+domain you want to be on. We try to seperate these for different
+experiments as it gives us a clean slate to work on.
+
+Seperation is done by using the "virtual AP" capabilities that
+OpenWRT provides. It is not explicitly referred to as this but
+it is in affect a way to have **multiple** `wifi-iface` entries
+that share **the same radio** - that is the same `option device`.
+
+### Radio configuration a la `wifi-device`
+
+You must use the exact same parameters here for configuring the
+wifi radio.
+
+TODO: Bolt-down the 2.4Ghz range and the 5Ghz range
+
+The 2.4Ghz radio configuration:
+
+```
+config wifi-device 'radio0'
+	option type 'mac80211'
+	option path 'platform/ahb/18100000.wmac'
+	option channel '3'
+	option band '2g'
+	option htmode 'HT20'
+	option disabled '0'
+```
+
+| Channel   | Band    | HT mode 							 |
+|-----------|---------|------------------------|
+| 3 				| `2g`		|	Leave as what you have |
+
+
+
+### `wifi-iface` parameters
+
+This is for broadcast domain configuration - i.e. which 802.11
+mesh to join based on which experiment you want to be a part of.
+
+In general you will notice we always add encryption. This is
+just to keep random strangers off the network. "Stranger" is
+not really a good definition, a better one would be "people
+who just connect to random networks".
+
+#### Yggdrasil 802.11s segment
+
+Please add an entry to you `wifi-iface` with the following parameters:
+
+```
+option device 'radio0'
+	option ifname 'mesh0'
+	option mode 'mesh'
+	option mesh_id 'Novasredes (N: YP)'
+	option mesh_fwding '0'
+	option encryption 'sae'
+	option key 'NOVASREDES_80211S'
+```
+
+All fields **MUST** appear as is. The only ones you can change
+are `ifname` and the chosen `device`. These must obviously be
+set to the sensible values.
