@@ -20,7 +20,7 @@
 {{if eq $datePublished $t}}
 	<!-- Do nothing -->
 {{else}}
-	<p><b>Date:</b> {{$datePublished}}</p>
+	<p><b>Date:</b> {{time.Format "Monday the 1 January 2006" $datePublished}}</p>
 {{end}}
 
 
