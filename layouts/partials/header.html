@@ -1,0 +1,10 @@
+
+<!-- Authorship details -->
+{{$pageAuthor := .Param "author"}}
+{{$datePublished := .PublishDate}}
+
+<p><b>Written by:</b> {{$pageAuthor}}</p>
+<!-- FIXME: Fix when date is not present -->
+<p><b>Date:</b> {{time.Format "1 1 2020" $datePublished}}</p>
+
+

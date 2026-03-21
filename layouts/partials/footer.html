@@ -1,13 +1,14 @@
+<br>
+<br>
+<br>
 <hr>
-<br>
-<br>
-<br>
 
 {{$siteCopyright := .Site.Param "copyright"}}
 {{$siteLicense := .Site.Param "license"}}
 
 <footer>
 	<center>
+	<!-- FIXME: Check for null for `.GitInfo` when git information is not present -->
 	<p>{{.GitInfo}}</p>
 	<p>{{$siteCopyright}}</p>
 	<p><i>under</i> the <code>{{$siteLicense}}</code> license</p>
