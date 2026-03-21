@@ -36,3 +36,28 @@ Only add a `list ports` entry for the interfaces you have/want bridged (take not
 
 Really it is just added as a slave interface to the `accessbr0` bridge so nothing needs to be done.
 
+### On wifi
+
+What we will be doing is using the *same* `wifi-device` or *WiFi radio* and adding an **additional** `wifi-iface` entry that *uses that `wifi-device`*.
+
+So therefore, let's add an entry like follows to our `/etc/config/wireless`:
+```
+config wifi-iface 'access_radio0'
+	option device 'radio0'
+	option ifname 'accesswifi0'
+	option mode 'ap'
+	option ssid 'Yggdrasil Access Node 2'
+	option encryption 'sae'
+	option key 'HateTheStateMate69'
+```
+
+Some of the parameters are:
+- `encryption` is set to `sae` for the standard encryption mechanism. It's the same one as used for the 802.11s (mesh) `wifi-iface`.
+- the `key` is then the actual passphrase
+- We set the `mode` to `ap` as we want to create an access point (and not a mesh point like we did earlier)
+	- The `ssid` is the name that will be advertised for our WiFi network
+- the `ifname` is the network interface name that will be created when this interface is brought up and will be how we send and receive traffic over this WiFi network
+- lastly, we specify which `wifi-device` or *radio* to use for this. We have set it to the same radio we used earlier; `radio0`.
+
+This is all that is needed to be done.
+
