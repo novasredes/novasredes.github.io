@@ -3,9 +3,6 @@
 {{$pageAuthor := .Param "author"}}
 {{$datePublished := .PublishDate}}
 
-
-{{print $pageAuthor}}
-
 {{if not (eq $pageAuthor nil)}}
 	<p><b>Written by:</b> {{$pageAuthor}}</p>
 {{end}}
