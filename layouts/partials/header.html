@@ -4,7 +4,12 @@
 {{$datePublished := .PublishDate}}
 
 
-<p><b>Written by:</b> {{$pageAuthor}}</p>
+{{print $pageAuthor}}
+
+{{if not (eq $pageAuthor nil)}}
+	<p><b>Written by:</b> {{$pageAuthor}}</p>
+{{end}}
+
 
 <!--
 	Below is the default value that appears when no
