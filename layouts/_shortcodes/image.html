@@ -1,13 +1,14 @@
-
-
 {{ $imageSrc := .Get "src" }}
 {{ $imageWidth := .Get "size" }}
 {{ $caption := .Get "caption" }}
 
-<!-- FIXME: Set caption if unset -->
-
-
-<img src="{{$imageSrc}}" width="{{$imageWidth}}">
-<p>{{$caption}}</p>
-</img>
-
+<div>
+	<a href="{{$imageSrc}}">
+		<img src="{{$imageSrc}}" width="{{$imageWidth}}"></img>
+	</a>
+	{{if not (eq $caption "")}}
+		<p>{{$caption}}</p> 
+	{{else}}
+		<p>d</p>
+	{{end}}
+</div>
