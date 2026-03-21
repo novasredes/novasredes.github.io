@@ -21,3 +21,46 @@ at least **64MB** of flash).
 {{< image src="/hardware/ygg_cudy_ap300.webp" size="40%" caption="Cudy's AP300 router">}}
 
 {{< image src="/hardware/ygg_mikrotik_map.webp" size="40%" caption="Mikrotik mAP">}}
+
+## What is 802.11s or _mesh mode_?
+
+The word "mesh" is thrown a lot depending on where you are reading about it,
+it's often used to describe the topology of nodes to one another and can technically
+be present at most levels of the layered networking model.
+
+When we talk about mesh with regards to WiFi we are referring to either one
+of the following technologies:
+
+1. Ad-hoc mode
+	* This mode was very popular back in the day but it seemed to either never
+		be properly standardised and hence was only available on certain hardware
+2. 802.11s mesh mode
+	* The 802.11s standard introduced a stdandardised mesh mode that basically
+		did what the ad-hoc mode.
+	* It has additional functionality such as _forwarding_ via the `mesh_fwding`
+		option that you will see later; however we won't be using that
+
+I had found [this](https://wireless.docs.kernel.org/en/latest/en/users/documentation/modes.html#ad-hoc-ibss-mode) page whilst writing it which at least confirms the concept
+of these two as being distinct.
+
+The mesh mode allows one to configure every radio on a certain channel
+and SSID such that they will see all traffic on that WiFi network appear
+on their `wifi1` interface. The neat part is that there is no dedicated
+access point and hence no central point of failure - no one node is
+responsible for broadcasting the "network". But all nodes can see the
+traffic of all neighbouring nodes.
+
+As soon as a new device is in range, it "joins" the network. There is
+no handshake as there is no central point to handshake with, you just
+start transmitting. The same applies for reception of frames, as soon
+as something is received on that channel+SSID then you accept it.
+
+The main take-home point is that this results in one big Ethernet
+segment containing Ethernet frames from Ethernet devices in the 
+immediate radio vicinity of one another. 
+
+The `mesh_fwding` option allows optional forwarding _via_ one of the
+nodes in the case where you have `A <-> B <-> C` and `A` cannot see
+`C`, it's frames will be forwarded _via_ `B` and vice-versa.
+
+
