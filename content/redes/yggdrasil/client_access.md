@@ -119,4 +119,94 @@ We then set the `ra_flags` to  `none`, this is important because by default it i
 
 You should then see something like this (if you restart with `service dnsmasq restart`):
 
-{{< image src="/yggdrasil/network_manager_initial.png" caption="kak" size="30%" >}}
+{{<image src="/yggdrasil/network_manager_initial.png" caption="Network manager UI showing network information" size="30%">}}
+
+We then set the `ra_default` option to `2`. This mode **forces** the advertisement of a default route (a `::/0` route) to the SLAAC clients _even_ if you don't have such a route on the Yggdrasil machine.
+
+* The reason for this is to advertise a route that would be a catch-all route at the very least for Yggdrasil's `200::/7` prefix.
+
+NOW I want to advertise **just** a prefix - maybe - to `200::/7`. Maybe the default route _is_ better - depends on the use case.
+
+The `list dns <...>` parameters are to specify the DNS recursion servers that should be used for resolving domain names. It makes sense that these should be addresses to hosts that an Yggdrasil-only host can connect to because at the end of the day the SLAAC-configured hosts can only talk to machines on the Yggdrasil network.
+
+1. Therefore I have chosen from a list here https://yggdrasil-network.github.io/services.html#DNS which contains a number of resolvers
+2. These revolvers typically resolve clear-net domain names but also those on Yggdrasil exclusively such as :
+	i. [Alfis](https://github.com/Revertron/Alfis) - this let's you resolve domain names like _acetone.ygg_
+	ii. [Meshname](https://github.com/zhoreeq/meshname) - this let's you resolve domain names like _amsaohridkpngaaaaaaaaaakzy.meship_
+
+The `list ntp <...>` is where we configure the NTP servers to advertise over SLAAC. This is _indeed_ something that SLAAC can do; it can actually advertise a list of servers to the connecting host which allow it (the host) to sync up its clocks
+
+1. This won't work **unless** we enable DHCPv6 as that is the only way OpenWRT supports advertising these
+2. For these to work we need to set the `ra_flags` to `other-config` which will make our SLAAC server advertise additional flags like that there is a local DHCPv6 server available
+3. Then add your NTP servers as entries:
+	```
+	list ntp '202:a2a5:dead:ded:9a54:4ab5:6aa7:1645'
+	list ntp '223:180a:b95f:6a53:5c70:e704:e9fc:8b8f'
+	list ntp '200:8ce3:6def:9d4d:a976:9dfb:f0a6:91ce'
+	list ntp '201:72f6:9b56:e977:2d40:c7da:667b:f7a0'
+	```
+4. This DHCPv6 server will be responsible for advertising the NTP time servers. However, we also need to enable it. We do this by setting the option `dhcpv6` to `'server'` which will enable the DHCPv6 server
+5. Now when I run `jounalctl -f` on my host machine (the one I am using to connect to the client access WiFi network) I see the following:
+	i. {{<image src="/yggdrasil/ntp_sources_1.png" caption="NTP sources being added dynamically" size="30%">}}
+
+### Misc
+
+Lastly, there's one more thing that we need to set before we can have clients connected via our `accessbr0` able to forward packets to and from the Yggdrasil network _via_ our router.
+
+We will need to enable IP forwarding in order for packets received _by_ our router's `accessbr0` but not destined _to_ it will be forwarded on via the `ygg0` interface. We can do this by editing the `/etc/config/firewall` file and set the following in the `defaults` section:
+
+```
+config defaults
+    option forward 'ACCEPT'
+```
+
+The default value for `forward` is normally `REJECT` but we must set it to `ACCEPT` in order to enable IP forwarding
+
+## DNS v2
+
+There is a _better_ way to setup the DNS. We must leave the defaults as is an remove _any_ of the `list dns <...>` entries in `/etc/config/dhcp` in the `config dhcp 'accessSlaac'` entry such that all we are left with. This is so that the default behaviour of OpenWRT can kick in which _is_ to advertise the host itself as the DNS server.
+
+The good thing about this is that the advertised router **is** an Yggdrasil IP, meaning that whenever the name server is advertised our SLAAC clients will retrieve a DNS server they can reach.
+
+### Handling `.meship` and `.ygg` domains
+
+In order to do this we will configure our DNS server to, on behalf of us, use the following name servers in order to resolve domains in these TLDs for us.
+
+In the `config dnsmasq` entry (the default entry), we will add the following entries:
+
+```
+config dnsmasq
+	...
+    
+  list server '/*.ygg/324:71e:281a:9ed3::53'
+  list server '/*.ygg/302:db60::53'
+  list server '/*.ygg/300:6223::53'
+  list server '/*.ygg/302:7991::53'
+  list server '/*.meship/324:71e:281a:9ed3::53'
+  list server '/*.meship/302:db60::53'
+  list server '/*.meship/300:6223::53'
+  list server '/*.meship/302:7991::53'
+```
+
+Each entry here describes two things on the syntax of `/<regex>/<nameserver>`
+1. the `<regex>` must contain a regular expression that matches the TLD you want to match against
+2. then `<nameserver>` is the corresponding name server that is to be responsible for resolving any domains matching said `<regex>`
+
+You can add multiple entries for the same TLD regex matcher
+
+>**Note:** It also helps to restart `network` sometimes in order to kick these changes into action
+
+Now all the listed entries will be hidden and we will just use our `_gateway` as the DNS recursive resolver, which in turn will be able to query the recursive resolvers we configured:
+* {{<image src="/yggdrasil/network_manager_dnsv2.png" caption="Network manager UI showing updated changes, now just a single upstream DNS provider - us!" size="30%">}}
+
+### Everything else
+
+The nice thing is that this approach lets our OpenWRT machine itself _also_ resolve these new TLDs.
+
+Along with this it also means that we can still resolve our **standard domains** via the nameserver configuration provided to us via DHCP/DHCPv6/SLAAC on our Internet-facing interface.
+
+> **Note:** For those who want to deploy a node without this, more work would be required.  
+
+## NTP v2
+
+Figure out how to get ourselves advertised automatically or just even maybe normally
