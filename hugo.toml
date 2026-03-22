@@ -9,4 +9,4 @@ enableGitInfo = true
 	tagline = 'Redes de computadores experimentais'
 	copyright = 'Copyright everything by Tristan Brice Velloza Kildaire'
 	license = 'Creative Commons Attribution-ShareAlike 4.0 International'
-	logoPath = 'logo.png'
+	logoPath = '/standard/logo.png'
