@@ -1,5 +1,5 @@
 ---
-title: LoRa network
+title: Reticulum LoRa network
 description: Learn about our LoRa-based network based on Reticulum
 ---
 
