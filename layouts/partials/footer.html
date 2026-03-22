@@ -5,9 +5,11 @@
 
 {{$siteCopyright := .Site.Param "copyright"}}
 {{$siteLicense := .Site.Param "license"}}
+{{$dateLastModified := .Lastmod}}
 
 <footer>
 	<center>
+	<p>Last modified on <i>{{time.Format "Monday the 1 January 2006" $dateLastModified}}</i></p>
 	<!-- FIXME: Check for null for `.GitInfo` when git information is not present -->
 	<p>{{.GitInfo}}</p>
 	<p>{{$siteCopyright}}</p>

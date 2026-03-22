@@ -15,13 +15,21 @@
 	<h1>{{$siteName}}</h1>
 	<h4>{{$siteTagling}}</h4>
 
-	<p>O que estas a procurar?<p>
+	<p>Setores deste sitio web</p>
+	<ol>
+		{{range .Site.Sections}}
+			{{$page := .}}
+			<li><a href="{{$page.RelPermalink}}">{{$page.Title}}</a> - <i>{{$page.Description}}</i></li>
+		{{end}}
+	</ol>
+
+	<p>O que estas a procurar?</p>
 	<ol>
 		{{range .Site.RegularPages}}
 			{{$page := .}}
-			<li><a href="{{$page.RelPermalink}}">{{$page.Title}}</a> - <i>{{$page.Description}}</li></li>
+			<li><a href="{{$page.RelPermalink}}">{{$page.Title}}</a> - <i>{{$page.Description}}</i></li>
 		{{end}}
-	<ol>
+	</ol>
 	<p>Click <a href="">here</a> for more information</p>
 
 	</center>

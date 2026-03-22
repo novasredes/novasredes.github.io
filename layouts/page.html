@@ -16,12 +16,7 @@
 	<!-- <img width="50%" height="40%" src="logo.svg"></img> -->
 	<h1>{{$siteName}}</h1>
 	<h4>{{$siteTagling}}</h4>
-	<hr>
-	{{range .Site.RegularPages}}
-		{{$page := .}}
-		<a href="{{$page.RelPermalink}}">{{$page.Title}}</a>
-	{{end}}
-	<hr>
+	{{partial "navbar.html" .}}
 	</center>
 
 	{{partial "header.html" .}}

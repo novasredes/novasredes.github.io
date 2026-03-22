@@ -1,0 +1,10 @@
+<hr>
+{{range .Site.Sections}}
+	{{$page := .}}
+	{{if eq $.Page.Section $page.Section}}	
+		<a href="{{$page.RelPermalink}}"><b>{{$page.Title}}</b></a>
+	{{else}}
+		<a href="{{$page.RelPermalink}}">{{$page.Title}}</a>
+	{{end}}
+{{end}}
+<hr>
