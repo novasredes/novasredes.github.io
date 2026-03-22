@@ -1,5 +1,5 @@
 ---
-title: Yggdrasil
+title: What is Yggdrasil?
 description: Secure routing network
 ---
 
@@ -30,7 +30,16 @@ out an IPv6 address. This mechanism compresses and hence moves
 one from a higher bit-width key to a lower one - this means that
 clashes are perhaps possible. Think of two keys $A_key$ and $B_key$
 are hashed and we only take a small portion of the hash - there
-is a possibility.
+is a possibility. However, this is the most well-known way to
+access _services_ on Yggdrasil via the standard `AF_INET6`
+(IPv6 address format).
+
+Building the Yggdrasil network out though does allow it to
+grow and eventully when Yggdrasil does build a way to interface
+with its packet interface then a much higher bit-wdith
+public key fingerprint can be used.
+
+
 
 TODO: Continue this
 
@@ -44,6 +53,23 @@ it offers.
 TODO: Add photo here showing WiFi hotspot
 
 The SSID is `NovasRedes N:YGG,T:CID` and the password is `acessoparacidadeiros`.
+
+After connecting you will be assigned an IPv6 address for
+use **only** within the Yggdrasil network. This will give
+an address within the `300::/8` range and is a subset of
+the Yggdrasil node you actually just connected with.
+
+Once connected you will also have your DNS reconfigured to
+use one of the Yggdrasil DNS servers - this allows you to
+use certain domains that are resolvable within the Yggdrasil
+network.
+
+In terms of testing your connection you can try accessing
+certain:
+
+1. [`novasredes.ygg`](http://novasredes.ygg)
+	* TODO: Docker+Caddy+Yggdrasil setup unique web serving node for this site (as a mirror)
+2. [`acetone.ygg`](http://acetone.ygg/)
 
 ## Running your own node
 

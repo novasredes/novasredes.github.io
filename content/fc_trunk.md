@@ -3,7 +3,7 @@ title: FC Trunking
 description: Servicio de Trunking por Feri Caneca (routed Ethernet with POPs)
 ---
 
-## Trunking - _O que estas_?
+## Trunking - _O que esta_?
 
 Imagine you have two endpoints that you want to connect and you want to move
 Ethernet frames from one point-of-prescene to another point-of-prescene. You
@@ -12,6 +12,10 @@ as VLANs (as many as you want) should be able to _ingress_ at the one POP
 and _egress_ at the other and vice-versa.
 
 This is what novasredes' trunking service aims to offer.
+
+# POPs
+
+TODO: These still need to be decided on
 
 # Trunking
 

@@ -1,0 +1,46 @@
+<html>
+
+<!-- TODO: Figure out a way to get this into the config.toml -->
+{{$siteName := .Site.Title}}
+{{$siteTagling := .Site.Param "tagline"}}
+{{$siteCopyright := .Site.Param "copyright"}}
+{{$siteLogoPath := .Site.Param "logoPath"}}
+
+<head>
+	<title>{{.Title}} | {{$siteName}}</title>
+</head>
+
+<body>
+	<center>
+	<a href="/"><img width="50%" height="40%" src="/{{$siteLogoPath}}"></img></a>
+	<!-- <img width="50%" height="40%" src="logo.svg"></img> -->
+	<h1>{{$siteName}}</h1>
+	<h4>{{$siteTagling}}</h4>
+	<hr>
+	{{range .Site.RegularPages}}
+		{{$page := .}}
+		<a href="{{$page.RelPermalink}}">{{$page.Title}}</a>
+	{{end}}
+	<hr>
+	</center>
+
+	{{partial "header.html" .}}
+
+	{{ .Content }}
+
+	<center>
+	<ul>
+	{{range .Pages}}
+		{{$title := .Title}}
+		{{$description := .Description}}
+		
+		<li><p><a href="{{.RelPermalink}}">{{$title}}</a> - <i>{{$description}}</i></p></li>
+	{{end}}
+	</ul>
+	</center>
+
+</body>
+
+{{partial "footer.html" .}}
+
+</html>

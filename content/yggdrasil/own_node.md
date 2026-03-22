@@ -9,7 +9,7 @@ This is a guide on how to create you own Yggdrasil node.
 ## Prerequisites
 
 Before we get started it is important that you take a look at
-first reading the setup process of a [802.11s node](/redes/802.11s/intro).
+first reading the setup process of a [802.11s node](/802.11s/intro).
 The important parts to take note of there are those pertaining
 to the wifi radio and wifi interface configuration parameters
 specific to the Yggdrasil experiment WiFi network.
@@ -169,4 +169,4 @@ That is enough to help join the Yggdrasil network and help
 route traffic. The next step would be allowing people to
 optionally access Yggdrasil _via_ your node.
 
-For information on client access [read this guide](/redes/yggdrasil/client_access).
+For information on client access [read this guide](/yggdrasil/client_access).

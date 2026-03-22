@@ -3,6 +3,28 @@
 {{$pageAuthor := .Param "author"}}
 {{$datePublished := .PublishDate}}
 
+{{range .Sections}}
+	<!-- <p>{{.}}</p> -->
+{{end}}
+
+{{$inSection := .Section}}
+
+<!--
+	If we are IN a page of this section
+-->
+{{if not .IsSection}}
+<center>
+	<h4>This is a part of <a href="{{.Parent.RelPermalink}}"><i>{{$inSection}}</i></a></h4>
+</center>
+{{else}}
+<!--
+	If we are in the section ITSELF
+-->
+<center>
+	<h4>The <i>{{$inSection}}</i> section</h4>
+</center>
+{{end}}
+
 {{if not (eq $pageAuthor nil)}}
 	<p><b>Written by:</b> {{$pageAuthor}}</p>
 {{end}}
@@ -15,9 +37,16 @@
 	Therefore we check for this and then omit printing
 	the date if this is the case
 -->
-{{$t := (time.AsTime "0001-01-01")}}
+{{$defaultTime := (time.AsTime "0001-01-01")}}
 
-{{if eq $datePublished $t}}
+<!--
+	Section type pages should not include dates
+-->
+{{if .IsSection}}
+	{{$datePublished = $defaultTime}}
+{{end}}
+
+{{if eq $datePublished $defaultTime}}
 	<!-- Do nothing -->
 {{else}}
 	<p><b>Date:</b> {{time.Format "Monday the 1 January 2006" $datePublished}}</p>
