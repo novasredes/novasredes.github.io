@@ -131,8 +131,8 @@ The `list dns <...>` parameters are to specify the DNS recursion servers that sh
 
 1. Therefore I have chosen from a list here https://yggdrasil-network.github.io/services.html#DNS which contains a number of resolvers
 2. These revolvers typically resolve clear-net domain names but also those on Yggdrasil exclusively such as :
-	i. [Alfis](https://github.com/Revertron/Alfis) - this let's you resolve domain names like _acetone.ygg_
-	ii. [Meshname](https://github.com/zhoreeq/meshname) - this let's you resolve domain names like _amsaohridkpngaaaaaaaaaakzy.meship_
+	- [Alfis](https://github.com/Revertron/Alfis) - this let's you resolve domain names like _acetone.ygg_
+	- [Meshname](https://github.com/zhoreeq/meshname) - this let's you resolve domain names like _amsaohridkpngaaaaaaaaaakzy.meship_
 
 The `list ntp <...>` is where we configure the NTP servers to advertise over SLAAC. This is _indeed_ something that SLAAC can do; it can actually advertise a list of servers to the connecting host which allow it (the host) to sync up its clocks
 
