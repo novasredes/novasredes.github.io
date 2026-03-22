@@ -128,7 +128,41 @@ config yggdrasil_ygg0_peer
 
 > **Note** Running `service network reload` doesn't seem to do it for yggdrasil, rather a restart is needed with `service network restart`.  
 
- 
+
+## Other things
+
+Just some other items that may be of use to you for maintenance reasons.
+
+### Installation of packages script
+
+This script removes and installs all that is needed:
+
+```bash
+#!/bin/sh
+opkg remove wpad-basic-mbedtls
+opkg install yggdrasil luci-proto-yggdrasil wpad-mesh-mbedtls nano
+```
+
+### Updating script
+
+In order to make applying updates for all currently installed packages that may have a new version you can run this script:
+
+```bash
+#!/bin/sh
+opkg update
+for i in $(opkg list-upgradable | cut -d" " -f1)
+do
+	opkg upgrade $i
+done
+```
+
+## Advisory notes
+
+### `24.10.4` and `24.10.1` differences
+
+* Seems that the `24.10.1` version works fine in terms of DHCP/SLAAC
+* `24.10.4` however wants me to restart the `network` service at least once before it will work
+
 ## Next steps?
 
 That is enough to help join the Yggdrasil network and help
