@@ -18,9 +18,9 @@ You can see all of this in the “One tool, many uses” section [here](https://
 
 ## Parts list
 
-{{< image src="/reticulum/rnode/1.jpeg" caption="LillyGo T3-S3" size="40%">}}
+{{< image src="/reticulum/rnode/1.jpeg" caption="LillyGo T3-S3" size="20%">}}
 
-{{< image src="/reticulum/rnode/2.jpeg" caption="LillyGo T3-S3" size="40%">}}
+{{< image src="/reticulum/rnode/2.jpeg" caption="LillyGo T3-S3" size="20%">}}
 
 I decided to purchase 2 of the **LillyGo T3-S3**’s which make use of the SX1276 chipset.
 
@@ -30,4 +30,111 @@ I decided to purchase 2 of the **LillyGo T3-S3**’s which make use of the SX127
 I specifically bought 2 because I doubt there is anyone in my area running the RNode firmware and doing Reticulum over it. Secondly, even if there was someone then I wouldn’t have full control over my tests.
 
 This device can be purchased locally [here](https://www.robotics.org.za/development-boards/esp32-lilygo-boards/H596).
+
+## Flashing the firmware
+
+I have documented two ways in which one can install the firmware onto your device.
+The reason for this was because I initially had some issues using the auto-installation
+feature of `rnodeconf` - it would flash but wouldn’t fully perform all the needed
+parameter setting on my device.
+
+### Prerequisites
+
+Firstly you will need to install the `rns` package using `pip`. This package will
+make the `rnodeconf` executable available for you, which will allow us to both
+**install the firmware** _and_ **configure our RNode** (as multiple modes exist).
+
+Installation can be performed with:
+
+```bash
+pip3 install rns
+```
+
+### Serial device access
+
+When we plug in our device it will appear as some sort of `dev/ttcyACMx` device
+(where $x$ is some number). This device type is a serial device and in order to
+get access to all-and-any serial device one must either be a part of the `dialout`
+group or `root`. The latter is overkill and I would much rather we use an approach
+that doesn’t require us running the `rnodeconf` tool as a user other than our own.
+
+To add yourself to the `dialout` group run the following command to append (`-a`)
+a new group (the `-G`) to your current user:
+
+```bash
+sudo usermod -aG dialout deavmi
+```
+
+In my case my username is `deavmi`.
+
+### Flashing the firmware
+
+The first step is to plug in your device. **However**, whilst plugging it in via
+the USB-C port you must be holding the Boot button on the board:
+
+{{< image src="/reticulum/rnode/3.webp" caption="Placement of boot button" size="20%">}}
+
+Now you will need to run `dmesg -w` (you might need to run it as `root`). This is
+just so we can see the device path of the serial device we just plugged in:
+
+{{< image src="/reticulum/rnode/4.png" caption="dmesg output" size="40%">}}
+
+As you can see mine is `/dev/ttyACM1`
+
+>**Note:** Before we begin, ensure that no other application is using this serial
+device. I had that happen to me by mistake (as I had rnsd running and pointed to
+my RNode at the same device path). It will not work if something else is using the
+serial device at the same time (specifically if it is actively communicating with
+it whilst rnodeconf is also trying to)
+
+Let’s now begin the installer with the command `rnodeconf /dev/ttyACM1 -a`. Next
+we will be asked a few questions:
+
+1. You will be asked which device you are using, in my
+case it is the `[9] LilyGO LoRa T3S3 option.`
+2. Next you will be asked to select the band that the
+radio is to be configured in. In my case that would be
+the 868Mhz band, so I must select the `[2] 868/915/923 MHz (with SX1276 chip)` a.
+Also note that there are normally two options per band,
+I went with this option as I am using the SX1276 chipset
+as mentioned earlier
+3. Now you will be presented with the following screen,
+check that everything is in order before hitting any key:
+
+```
+Confirm detals:
+
+Serial port     : /dev/ttyACM1
+Device type     : RNode 820 - 960 MHz
+Platform        : ESP32
+Device MCU      : Espressif Systems ESP32
+Firmware file   : rnode_firmware_t3s3_sx127x.zip
+```
+
+**Note:** The tool only seems to support downloading
+with `AF_INET` (meaning that IPv6 support doesn’t work)
+
+Now hit enter. Please note that, at least for now, the
+installation is not complete when it finishes and it
+won’t reboot the device automatically for you. Once you
+get the message that the installer failed to do so, then
+you can power cycle your device.
+
+### Finishing up
+
+Because there is a slight bug in the installer we now
+need to perform the following.
+
+Firstly, when you boot the device you will get a nasty
+warning that the “hardware failure”:
+
+{{< image src="/reticulum/rnode/5.webp" caption="RNode showing hardware failure message" size="20%">}}
+
+To fix this we first completely wipe the data that says
+what model the firmware is expecting and replace it with
+what it _should_ expect (our model details); hence getting
+rid of the mismatch of models. Before we begin you must
+hit the `Reset` button:
+
+{{< image src="/reticulum/rnode/6.webp" caption="Location of reset button" size="20%">}}
 
