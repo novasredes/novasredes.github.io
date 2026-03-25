@@ -33,8 +33,8 @@ sudo systemctl status docker
 
 ## RNode configuration
 
-TODO: Add this - but put it on a seperate page
-but with a link here
+You will first need to flash the RNode firmware onto your device.
+A [guide](/reticulum/rnode_setup) has been created for that.
 
 ## Reticulum configuration
 
