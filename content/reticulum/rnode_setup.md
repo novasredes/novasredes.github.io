@@ -138,3 +138,40 @@ hit the `Reset` button:
 
 {{< image src="/reticulum/rnode/6.webp" caption="Location of reset button" size="20%">}}
 
+Now we can run the command:
+
+```bash
+rnodeconf --eeprom-wipe /dev/ttyACM1 # Wipe old settings
+rnodeconf -r --model aa --product f0 --hwrev 1 /dev/ttyACM1 # Set the CORRECT model information
+```
+
+Now we will have _another error_, this one occurs because
+the firmware has a hash digest generated for it and then
+one stored in memory as well. If the `hash(firmware_current) != hash(firmware_expected)`
+then a UI warning appears:
+
+{{< image src="/reticulum/rnode/7.webp" caption="Corrupt firmware warning" size="20%">}}
+
+This can be fixed by obtaining the hash of our _current
+firmware_ and then overwriting the _expected hash value_
+parameter; therefore making them match and making that
+UI error disappear. First let’s get the current hash with:
+
+```bash
+rnodeconf /dev/ttyACM1 -L
+```
+
+Now set the hash from the previous command’s output with:
+
+```bash
+rnodeconf /dev/ttyACM1 -H <hash>
+```
+
+Afterwards we shall see that the warning disappears and
+we should be left with a screen that appears as follows:
+
+{{< image src="/reticulum/rnode/8.webp" caption="After fixing firmware hash check" size="20%">}}
+
+### Bring it all together
+
+{{< image src="/reticulum/rnode/9.webp" caption="The final result" size="40%">}}
