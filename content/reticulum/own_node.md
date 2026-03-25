@@ -17,3 +17,29 @@ and adding the following to the file:
   "fixed-cidr-v6": "fd10:c8c6:3b63::/48"
 }
 ```
+
+After doing so, save it and then restart Docker in order to apply the new configuration.
+If you are on a systemd-based system then use:
+
+```bash
+sudo systemctl restart docker
+```
+
+Make sure all is fine by running and checking the status:
+
+```bash
+sudo systemctl status docker
+```
+
+## RNode configuration
+
+TODO: Add this - but put it on a seperate page
+but with a link here
+
+## Reticulum configuration
+
+TODO: Add this
+
+## LXMD configuration (optional)
+
+TODO: Add this into its own page

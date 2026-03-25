@@ -28,8 +28,8 @@ port = /dev/rnode1
 txpower = 15
 frequency = 868000000
 bandwidth = 62500
-spreadingfactor = 8 # Doesn't need to match on other side
-codingrate = 6 # Doesn't need to match on other side
+spreadingfactor = 8
+codingrate = 6
 ```
 
 Your `port` will differ most likely as it is device enumeration dependent,
@@ -42,13 +42,15 @@ However the important _radio_ aspect to have set in **common** are:
 
 1. `frequency`
 2. `bandwidth`
+3. `spreadingfactor`
+4. `codingrate`
 
 These effect how the radio is tuned and the range around the frequency
 it cares about. Every other option is PHY-and-up configuration. The
 `txpower` is how much _poder_ to push through the radio's antenna.
 
-The `codingrate` and `spreadingfactor` are LoRa-specific, but these
-can differ.
+The `codingrate` and `spreadingfactor` are LoRa-specific but also
+must be the same.
 
 ## Apps
 
