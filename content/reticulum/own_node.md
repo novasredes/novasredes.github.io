@@ -154,15 +154,69 @@ Therefore the simplest hack was to introduce a
 startup sleep time. Here I have that configured
 to 5 seconds with `SLEEP_TIME=5`.
 
-### Volumes
-
-
+### Volumes and users
 
 ```yaml
     volumes:
       # Reticulum configuration and storage directory
       - ${RETICULUM_DATA_PATH}:/data:z
+```
+
+The Reticulum daemon stores a lot of local data, pertaining
+not only to the identity it generates on first start (which
+isn't much data) but also to the peers it has learn of, these
+are stored so that there is a cache of information that can
+be used and looked up from. This obviously needs to be stored
+somewhere and hence I allow the user, via a `.env` file entry,
+to set this by setting the `RETICULUM_DATA_PATH` interpolation
+variable.
+
+
+I also expose, in a similar manner, the effective user ID and
+group ID for the process to run as. This is normally to be set
+to the uid/gid of a user you have access to on the host-side.
+Making thse match means the file metadata (available on the
+bind-mount) matches a uid/gid pair that you have access to -
+meaning you can **easily** manage the files.
+
+```yaml
     user: ${USER_UID}:${USER_GID}
+```
+
+In have exposed these as interpolation variables:
+
+1. `USER_UID`
+2. `USER_GID`
+
+### Devices
+
+Optionally, if you have a device you want to make available (from
+your host) and in your container, then this is where you would do
+that.
+
+The device in specific that I am interested in forwarding is the
+device connected at the _device node_ of `/dev/ttyACM0`. I know
+for a fact that (an `udev` rules aside, as I haven't made any
+that _could_ be used to give it a deterministic name) my RNode
+is always connected at that port. I therefore forward it to
+be available at `/dev/rnode1` with the `rwm` rights. I presume
+`r` is read, `w` is write and `m` is (manage?).
+
+The next thing you will want to do is also to add an additional
+_supplemantry group_ to the user the container's process is
+running as. This is group with ID 20. This is because the
+forwarded device inherits the ownership metadata as it is
+on the host side. On the host side `/dev/ttyACM0` is owned
+by `root` (uid 0) and group `dialout` (gid 20). Therefore
+for the process running on the _container side_ to be able
+to access such a device node (a file) it either needs to be
+root (which we _know_ it isn't as we have set our own
+custom effective UID). Therefore the only thing we can do
+is to place ourselves in the group with gid `20` - this will
+give us the rights to be able to access said device at
+`/dev/rnode1`.
+
+```yaml
     group_add:
       # On container-side the device node
       # (for the RNode) will be mounted with
@@ -174,6 +228,13 @@ to 5 seconds with `SLEEP_TIME=5`.
     devices:
       # Add RNode devices here
       - /dev/ttyACM0:/dev/rnode1:rwm
+```
+
+### Networking
+
+TODO: Do this
+
+```yaml
     networks:
       - retNet
     ports:
