@@ -17,6 +17,13 @@ This is what novasredes' trunking service aims to offer.
 
 TODO: These still need to be decided on
 
+We have planned wireless PoP. 
+
+TODO: Can we use `bridge-ap` (infrastructure mode?) This may not
+be able to trnasfer - in fact **no** it _won't_ work for multi-mac
+addresses behind a single station connecting to us. Therefore we 
+need WDS mode.
+
 # Trunking
 
 ## Transit network details (radio)
@@ -26,24 +33,4 @@ owners and so fourth. This information pertains to the links used between sites
 to create the coverage _rather_ than any radios that may be used as point-of-prescence
 radios to link to individual people who want to try out the trunking service.
 
-### _em_ Worcester
 
-These are the parameters used within Worcester.
-
-For the 2.4Ghz network:
-
-* WiFi operation modes used: `B`/`G`/`N`
-* Band: 2.4Ghz
-* Chosen frequency: 2467
-* Channel width: 20Mhz
-* `txpower` is locked to software's "regulatory domain" for the chosen region
-	* Region: `southafrica`
-
-For the 5Ghz network:
-
-* WiFi operation modes used: `A`/`N`
-* Band: 5Ghz
-* Chosen frequency: 5600
-* Channel width: 20Mhz
-* `txpower` is locked to software's "regulatory domain" for the chosen region
-	* Region: `southafrica`
