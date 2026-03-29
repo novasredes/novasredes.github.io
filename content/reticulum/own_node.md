@@ -232,7 +232,11 @@ give us the rights to be able to access said device at
 
 ### Networking
 
-TODO: Do this
+Lastly I place the `reticulum` container on the `retNet`
+network. I also then setup the Docker TCP/UDP proxy to
+bind on port `4242` for TCP and UDP and forward that
+traffic (proxying) into the container at port `4242`
+TCP/UDP as well:
 
 ```yaml
     networks:
@@ -242,18 +246,69 @@ TODO: Do this
       - :::4242:4242/udp # UDP server interface port
 ```
 
+These ports are what people will use when they want to
+connect to my peer. The use case of that will be so
+that they can make use of my node as a _transport node_.
+
 ## LXMD configuration (optional)
 
-TODO: Add this into its own page
+This step is optional but worth setting up as it is rather
+useful. LXMF is the messaging (like IM) layer that runs on
+top of Reticulum.
+
+It's what people use for messaging one another and supports
+various message types. It _also_ provides a way to place
+messages on a _propagation node_ `A` which will sync with
+other propagation nodes, until the message is on all propagation
+nodes (TODO: is that rigth?). Then the recipient user can
+sync with his propagation node (hopefully if he has one
+configured) and grab that message. In affect it is useful
+for messaging when the recipient is offline.
+
+The LXMD daemon allows one to setup a messaging endpoint
+but _also_ allows, amongst such features, for one to run
+a propagation node. Such a service adverises a Reticulum
+_destination_ with certain metadata which allows clients
+to understand that it is offering a _**propagation**
+node service_.
+
+Let's first define the basics of the service:
 
 ```yaml
+...
+
   lxmd:
     container_name: lxmd
     restart: unless-stopped
+```
+
+Next thing is that I want this service to depend on the
+`reticulum` service so that this service (`lxmd`) only
+starts up _after_ `reticulum` has started. This is not
+a hard requirement but the main reason I have done it
+is because if it starts earlier then it will send the
+announcement for its _propagation node service_ to all
+interfaces and since `reticulum`'s `rnsd` is not running
+yet it won't reach the wider network (as `reticulum`
+has all the upstream peers). Now it will _eventually_
+reach the wider network when `lxmd` broadcasts/announces
+its service at its interval (which is configurable).
+
+```yaml
     depends_on:
       - reticulum
+```
+
+We specify the source used to build the Docker image.
+The definition thereof can be found [here](/reticulum/lxmd_image).
+
+```yaml
     build:
       context: ../../../images/lxmd
+```
+
+
+```yaml
     environment:
       # AutoPeering over link-local didn't work
       # if you didn't make startup wait a little
