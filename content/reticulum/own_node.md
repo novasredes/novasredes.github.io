@@ -369,4 +369,66 @@ our Reticulum node's uplink.
 
 ### Config
 
-TODO: Add config file
+Lastly you will want to place a file named
+`config` inside of your `LXMD_DATA_PATH`.
+The contents should be:
+
+```toml
+[logging]
+  loglevel = 4
+```
+
+This sets the logging level. You can make it
+lower but it does help to see what is going
+on with your propagation node. Such as, who
+it is peering with in order to sync messages.
+
+The next options are to enable the propagation
+node feature (as mentioned `lxmd` can do many
+things and this is just one of its features).
+
+We also control how frequently announcements
+of the propagation node service _destination_
+should be sent out. We also ask it to announce
+upon startup of the `lxmd` process:
+
+```toml
+[propagation]
+  enable_node = yes
+
+  # Announce propagation node destination
+  # every 4 hours
+  announce_at_start = yes
+  announce_interval = 10
+```
+
+We want to automatically peer with other
+propagation nodes. This is done by picking
+up on similiar announcements coming through
+our peering interface (setup earlier).
+
+```toml
+  # Peer automatically with other
+  # propagation nodes
+  autopeer = yes
+```
+
+Lastly we set some limits on the syncing
+process. These are pretty self-explanatory.
+
+```toml
+  # Peer with other propagation nodes
+  # that are at maximum 10 many hops away
+  autopeer_maxdepth = 10
+
+  # Maximum size of a message
+  # that we will accept to
+  # be propagated to us
+  # I set mine to 1MB
+  propagation_transfer_max_accepted_size = 1000
+
+  # Storage limit for
+  # messages saved to store.
+  # I set mine to 10 Gigabytes
+  message_storage_limit = 10000
+```
