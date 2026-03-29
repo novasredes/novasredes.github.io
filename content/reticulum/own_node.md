@@ -250,6 +250,10 @@ These ports are what people will use when they want to
 connect to my peer. The use case of that will be so
 that they can make use of my node as a _transport node_.
 
+### Config
+
+TODO: Add config file
+
 ## LXMD configuration (optional)
 
 This step is optional but worth setting up as it is rather
@@ -307,6 +311,8 @@ The definition thereof can be found [here](/reticulum/lxmd_image).
       context: ../../../images/lxmd
 ```
 
+We set a start-up sleep time in much the same way as
+we did for the `reticulum` service:
 
 ```yaml
     environment:
@@ -315,13 +321,52 @@ The definition thereof can be found [here](/reticulum/lxmd_image).
       # bit (clearly for some Docker networking interfaces
       # to properly initialize)
       - SLEEP_TIME=5
+```
+
+As for storage, this one is quite important as you
+will be storing a lot of files which will contain
+message data pending to be synced with other propagation
+nodes. The storage path can be configured inside
+your `.env` file as the interpolation variable
+`LXMD_DATA_PATH`.
+
+The path for storing the Reticulum data, important
+to be persisted as this is how the _destination_
+address will be derived, is set via the `LXMD_RNS_PATH`
+interpolation variable.
+
+```yaml
     volumes:
       # Configuration and storage for lxmd
       - ${LXMD_DATA_PATH}:/data:z
 
       # Local RNS instance configuration path
       - ${LXMD_RNS_PATH}:/rns:z
+```
+
+Lastly, we set the effective user and group
+via the interpolation variables:
+
+1. `USER_UID`
+2. `USER_GID`
+
+```yml
     user: ${USER_UID}:${USER_GID}
+```
+
+We also place it onto the `retNet` network
+which is the same network that the `reticulum`
+container is on. This is so that they can
+discover one another via link-local multicast
+automatic peering - hence making our LXMF
+propagation node service available _via_
+our Reticulum node's uplink.
+
+```yml
     networks:
       - retNet
 ```
+
+### Config
+
+TODO: Add config file
