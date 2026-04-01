@@ -5,6 +5,8 @@ title = 'Novasredes'
 # To allow Hugo to read `.git`
 enableGitInfo = true
 
+relativeUrls = true
+
 [params]
 	tagline = 'Redes de computadores experimentais'
 	copyright = 'Copyright everything by Tristan Brice Velloza Kildaire'
