@@ -252,7 +252,99 @@ that they can make use of my node as a _transport node_.
 
 ### Config
 
-TODO: Add config file
+You will want to create a file named `config` inside
+of `RETICULUM_DATA_PATH`. The beginning of this config
+we can set the configuration level:
+
+```toml
+[logging]
+  loglevel = 4
+```
+
+#### Transport mode
+
+The point of running our Reticulum node is to be a
+router meaning that we will be able to transport
+Reticulum packets on behalf of other peers. So
+node `A` can forward a packet via node `B` (us)
+and `B` can forward it to `C`. This means `A`
+can reach `C` despite not having each other as
+direct peers. However, `A` and `C` are both peered
+with `B`. This is why we enable the _transport mode_
+option:
+
+```toml
+[reticulum]
+  enable_transport = True
+```
+
+#### Instance control et al.
+
+We will want to have the ability to control
+our instance for the sake of obtaining statistics
+via tools such as `rnstatus` _or_ diagnostic
+tools such as `rnpath`.
+
+TODO: Double check this
+
+```toml
+  share_instance = Yes
+  shared_instance_port = 37428
+
+  instance_control_port = 37429
+```
+
+#### Interfaces
+
+Next we will want to configure the various
+interfaces over which we can connect to
+other peers _or_ have them connect to us.
+
+These peers will be either people we are
+directly wanting to reach, maybe by request
+of another peer forwarding a packet _via_ us
+or - and this is the main focus - _other_
+transport nodes who may be one hop closer
+to the eventual destination.
+
+The first one we setup will only make sense
+in a Docker setup with more than one Reticulum
+instance available on the same network; in
+our case `retNet`. This is for automatically
+discovering LAN peers via link-local multicast.
+We will be enabling this so that the Reticulum
+instance in the `lxmd` service can discover
+us - the transport node:
+
+```toml
+[interfaces]
+  [[LAN Multicast interface]]
+    type = AutoInterface
+    enabled = yes
+```
+
+I also want to accept inbound peerings. This
+is useful as it allows people to per their
+normal node (or transport node) with mine
+if they know my domain/address and port:
+
+TODO: Enable UDP port (or fix it)
+
+```toml
+  [[TCP Inbound server]]
+      type = TCPServerInterface
+
+      enabled = yes
+      listen_ip = ::
+      listen_port = 4242
+
+  [[UDP Inbound server]]
+      type = UDPInterface
+      enabled = no # FIXME: Enable once fixed
+      listen_ip = ::
+      listen_port = 4243
+```
+
 
 ## LXMD configuration (optional)
 
