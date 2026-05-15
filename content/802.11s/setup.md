@@ -28,7 +28,8 @@ config defaults
 ```
 
 > Note: We disable forwarding as we won't be doing traditional IP forwarding with Yggdrasil - that is part of the Yggdrasil process itself. We do enable `OUTPUT` and `INPUT` for obvious reasons.  
-> Note: he **whole** file must be *just* the above. The default OpenWRT rules are many and they are annoying so make sure to remove them **all*.  
+> Note: he **whole** file must be *just* the above. The default OpenWRT rules are many and they are annoying so make sure to remove them **all**.  
+> Note: he **whole** file must be *just* the above. The default OpenWRT rules are many and they are annoying so make sure to remove them **all**.  
 
 You can now reload the firewall service with:
 
