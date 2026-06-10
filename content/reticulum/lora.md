@@ -26,7 +26,7 @@ enabled = yes
 port = /dev/rnode1
 
 txpower = 15
-frequency = 868000000
+frequency = 890000000
 bandwidth = 62500
 spreadingfactor = 8
 codingrate = 6
