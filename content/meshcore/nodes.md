@@ -8,7 +8,7 @@ The following nodes are operated by Novasredes:
 | Node name 					| Node board   | Node location 					 | Power 												 | Status |
 |---------------------|--------------|-------------------------|-------------------------------|--------|
 | NovasRedes Router 2 | LillyGo T3S3 | 33.62155 S, 19.44985 E  | Solar (runs from 10AM to 5PM) | ❌️			|
-| NovasRedes Router 3 | LillyGo T3S3 | 33.62155 S, 19.44985 E  | 🌞️ Solar	with battery backup  | ❌️			|
+| NovasRedes Router 3 | WizBlock 4631| 33.62155 S, 19.44985 E  | 🌞️ Solar	with battery backup  | ❌️			|
 
 ## NovasRedes Router 2
 

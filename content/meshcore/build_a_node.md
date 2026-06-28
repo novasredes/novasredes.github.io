@@ -18,7 +18,7 @@ The roles are split into two main categories:
 	* These perform routing between _other_ routers and client nodes
 2. Clients
 	* Normal companion nodes
-	* [Room servers](meshcore/room_servers)
+	* [Room servers](../room_servers)
 
 We will be focusing on the _repeater_ role today as we want to be able
 to build a node which will partake in the building and maintenance of
@@ -26,7 +26,7 @@ routes for the purpose of forwarding packets from one node to another
 where an in-direct hop is the only possible path.
 
 If you want to learn more about how routing works in Meshcore and what
-functionality it offers then take a look at the [routing section](meshcore/routing).
+functionality it offers then take a look at the [routing section](../routing).
 
 ## Building the node
 
