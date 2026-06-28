@@ -5,13 +5,17 @@ description: Meshcore nodes operated by NovasRedes
 
 The following nodes are operated by Novasredes:
 
-| Node name 					| Node board   | Node location 					 | Power 												 |
-|---------------------|--------------|-------------------------|-------------------------------|
-| NovasRedes Router 2 | LillyGo T3S3 | 33.62155 S, 19.44985 E  | Solar (runs from 10AM to 5PM) |
+| Node name 					| Node board   | Node location 					 | Power 												 | Status |
+|---------------------|--------------|-------------------------|-------------------------------|--------|
+| NovasRedes Router 2 | LillyGo T3S3 | 33.62155 S, 19.44985 E  | Solar (runs from 10AM to 5PM) | ❌️			|
+| NovasRedes Router 3 | LillyGo T3S3 | 33.62155 S, 19.44985 E  | 🌞️ Solar	with battery backup  | ❌️			|
 
+## NovasRedes Router 2
 
-**Please note:** The `Novasredes Router 2` is still in its infancy
-and not yet stable. Work is planned in the next month to properly
-re-wire it up in a way that will allow for it to run 24/7 without
-running out of battery power _or_ at least longer than it is running
-currently.
+This node is **currently down** and will be re-comissioned at a later stage.
+
+## NovasRedes Router 3
+
+This node is currently **being planned** and is not up yet.
+
+TODO: Add an image of the node
