@@ -48,6 +48,26 @@ building both Meshcore _and_ microReticulum
 3. WizBlock 4630
 	* This is the MCU which incoporates the CPU, storage, RAM
 		and the LoRa modem
+
+Below you can see what the WizBlock 4631 base board looks like
+along with the WizBlock 4630 MCU screwed onto it. If you ordered
+the "mesh starter kit" then I _presume_ (I don't know) the MCU
+comes pre-screwed on for you - which is probably good as those
+screws are incredibly tiny and difficult to screw on because
+of their size.
+
+We also have the uFL to SMA adaptor cable already connected to
+the LoRa modem.
+
+{{< image src="/hardware/wizblock/wizblock_4631.webp" caption="The WizBlock 4631 and 4630" size="20%">}}
+
+
+1. 868Mhz antenna
+	* This is used for LoRa communications
+2. uFL to SMA female adaptor
+	* This is required because the on-board LoRa modem does not have
+		an SMA connector but rather only a uFL connector
+	* Link: (TODO: If the mesh starter it is used then this is included)
 4. 2.4Ghz antenna
 	* https://www.robotics.org.za/BAT-P60-WIFI-2?search=bluetooth
 5. USB-C grommet
@@ -74,3 +94,15 @@ building both Meshcore _and_ microReticulum
 	* Link: https://www.robotics.org.za/955565?search=battery%205000mah
 
 TODO: Add voltages for battery and solar panel
+
+### The case
+
+
+
+### Configuration
+
+
+
+### The mast
+
+TODO: Get the needed poles
