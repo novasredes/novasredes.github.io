@@ -11,7 +11,7 @@ This is the frequency plan for the Reticulum service.
 
 ## Why `890mhz?`?
 
-The center frequency if `890mhz` because this reduces
+The center frequency of `890mhz` because this reduces
 collisions with Meshtastic and Meshcore devices. This
 is a gentleman's agreement simply because I don't want
 to stump on their low-traffic communications with the
