@@ -53,3 +53,15 @@ this and select `C` as the next-hop. The only condition is that `C`
 is a router that your client is aware of - meaning you have received
 an announcement of its prescense (the same applies to any next-hop
 including that of the dynamically selected one).
+
+## Building the node
+
+We will be building a node that can be run outdoors. However, if
+it needs to be run indoors and _with_ a grid-supplied electrical
+connection then this guide will still work for you. This is because
+the design integrates the housing for the battery, the embededded
+device, electrical wiring and antenna wiring.
+
+### Parts list
+
+
