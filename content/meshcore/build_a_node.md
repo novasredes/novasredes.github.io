@@ -35,7 +35,7 @@ node _itself_. So if I am node `A` and want to send a message to node
 `D` and I have two intermediary nodes:
 
 ```
-	-------- B --------
+  -------- B --------
  /                   \
 A                     D
  \                   /
