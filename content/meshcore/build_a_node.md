@@ -64,4 +64,12 @@ device, electrical wiring and antenna wiring.
 
 ### Parts list
 
-
+1. Case
+	* TODO: get name
+2. WizBlock	4631 + 
+	* This is the base board
+3. WizBlock 4630
+	* This is the MCU which incoporates the CPU, storage, RAM
+		and the LoRa modem
+4. 2.4Ghz antenna
+	* https://www.robotics.org.za/BAT-P60-WIFI-2?search=bluetooth
