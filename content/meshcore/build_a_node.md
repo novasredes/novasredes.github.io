@@ -61,6 +61,10 @@ the LoRa modem.
 
 {{< image src="/hardware/wizblock/wizblock_4631.webp" caption="The WizBlock 4631 and 4630" size="20%">}}
 
+And in case you wanted to know what the bluetooth antenna looks
+like then this us it:
+
+{{< image src="/hardware/wizblock/2_4ghz_bluetooth.webp" caption="The 2.4Ghz antenna" size="20%">}}
 
 1. 868Mhz antenna
 	* This is used for LoRa communications
