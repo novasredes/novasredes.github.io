@@ -15,6 +15,7 @@
 {{if not .IsSection}}
 <center>
 	<h4>This is a part of <a href="{{.Parent.RelPermalink}}"><i>{{$inSection}}</i></a></h4>
+	<h5>Viewing page <i>"{{.Title}}"</i></h5>
 </center>
 {{else}}
 <!--
@@ -24,6 +25,8 @@
 	<h4>The <i>{{$inSection}}</i> section</h4>
 </center>
 {{end}}
+
+<br>
 
 {{if not (eq $pageAuthor nil)}}
 	<p><b>Written by:</b> {{$pageAuthor}}</p>
