@@ -99,6 +99,12 @@ like then this us it:
 
 TODO: Add voltages for battery and solar panel
 
+### Power
+
+The battery I will be using is a 5000mah lithium battery.
+
+{{< image src="/hardware/wizblock/5000mah_battery.webp" caption="5000mah lithium battery" size="20%">}}
+
 ### The case
 
 

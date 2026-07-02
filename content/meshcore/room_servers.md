@@ -13,8 +13,7 @@ and read from.
 | Room server name 		| Node board   | Node location 					 | Power 												 |
 |---------------------|--------------|-------------------------|-------------------------------|
 | NovasRedes RS 1 		| LillyGo T3S3 | _Somewhere_					   | Mains power									 |
-| 🇧🇷️ Brazil 					| LillyGo T3S3 | _Somewhere_ 						 | Mains power									 |
-<!-- | NovasRedes RS 2 		| LillyGo T3S3 | _Somewhere_  					 | Mains power									 | -->
+| Brazil							| LillyGo T3S3 | _Somewhere_ 						 | Mains power									 |
 
 
 <!-- TODO: Sort out the detials above -->
