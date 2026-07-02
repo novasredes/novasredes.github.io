@@ -27,7 +27,7 @@
 	<ol>
 		{{range .Site.RegularPages}}
 			{{$page := .}}
-			<li><a href="{{$page.RelPermalink}}">{{$page.Title}}</a> - <i>{{$page.Description}}</i></li>
+			<li><a href="{{$page.RelPermalink}}">{{$page.Title}}</a> @ <code>{{$page.Section}}</code> - <i>{{$page.Description}}</i></li>
 		{{end}}
 	</ol>
 	<p>Click <a href="">here</a> for more information</p>
