@@ -1,4 +1,4 @@
----
+1;6H---
 title: Room servers
 description: Mailboxes for store-and-forward messaging
 ---
@@ -15,5 +15,12 @@ and read from.
 | NovasRedes RS 1 		| LillyGo T3S3 | _Somewhere_					   | Mains power									 |
 | Brazil							| LillyGo T3S3 | _Somewhere_ 						 | Mains power									 |
 
-
 <!-- TODO: Sort out the detials above -->
+
+## NovasRedes RS 1
+
+The password to access this _room server_ is: `hello`
+
+## Brazil
+
+Message `Tristao Mobile` on Meshcore to get access to this room.
